@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ artist.Art_Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Artist info</h2>
+  <p>
+    <b>Artist ID: </b>{{ artist.Art_ID }}
+  </p>
+  <p>
+    <b>Name: </b>{{ artist.Art_Name }}
+  </p>
+  <p>
+    <b>Country: </b>{{ artist.Art_Country }}
+  </p>
+  <p>
+    <b>Birthday: </b>{{ artist.Art_BirthDate }}
+  </p>
+  <p>
+    <b>Sex: </b>{{ artist.Art_Sex }}
+  </p>
+  <p>
+    <h3>Albums: </h3><ul>
+    {% for album in albums %}      
+      <li><a href="/albums/{{ album.Album_ID }}">{{ album.Album_Title }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>  
+  <p>
+    <h3>Genres: </h3><ul>
+    {% for g in genresart %}      
+      <li>{{ g.GenreArt }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>{% if tracks %}
+  <p>
+    <h3>Singles not included in albums: </h3><ul>
+    {% for s in tracks %}      
+      <li><a href="/tracks/{{ s.Track_ID }}">{{ s.Track_Title }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>  
+  {% endif %}
+  {% if users %}
+  <p>
+    <h3>Users that follow this artist: </h3><ul>
+    {% for u in users %}      
+      <li><a href="/users/{{ u.Login }}">{{ u.Login }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>  
+  {% endif %}
+{% endblock %}

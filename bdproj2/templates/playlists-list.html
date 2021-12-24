@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Playlists{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Title</b></th>
+    <th><b>Made by </b></th>
+
+   </tr>
+   
+  {% for playlist in playlists %}
+    <tr>
+      <td><a href="/playlists/{{ playlist.Play_ID }}">{{ playlist.Play_Title }}</a></td>
+      <td><a href="/users/{{ playlist.Login }}">{{playlist.Login }}</a></td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

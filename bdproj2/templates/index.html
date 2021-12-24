@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}MusicStream Database {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>About</h2>
+<p>This web application illustrates the use of the MusicStream
+database. The application is built using 
+<a href="https://pymysql.readthedocs.io/">PyMySQL</a>,
+<a href="https://flask.palletsprojects.com">Flask</a>, and
+<a href="https://jinja.palletsprojects.com">Jinja</a>.
+<p>Inspired by the Music Streaming Platform 
+<a href="https://www.spotify.com">Spotify</a>.
+</p>
+<p>Website and database made for the class <a href="https://www.dcc.fc.up.pt/~edrdo/aulas/bd/">CC2005</a> at <a href="https://www.dcc.fc.up.pt/site/">DCC.FCUP</a> by: José Santos up202007059 and Tiago Teixeira up202006089.</p>
+</p>
+
+<h2>Current items in our database.</h2>
+<table>
+<tr>
+  <th>Items</th>
+  <th>Count</th>
+</tr>
+<tr>
+  <td>Users</td>
+  <td>{{ stats.users }}</td>
+</tr>
+<tr>
+  <td>Artists</td>
+  <td>{{ stats.artists }}</td>
+</tr>
+<tr>
+  <td>Albums</td>
+  <td>{{ stats.albums }}</td>
+</tr>
+<tr>
+  <td>Tracks</td>
+  <td>{{ stats.tracks }}</td>
+</tr>
+</table>  
+<h2>List and Search Engine</h2>
+
+<h3>Albums</h3>
+<p>
+   <a href="/albums">List all avaiable Albums!</a>
+</p>
+<p>Get Album Info:
+  <form name="alid" action="javascript:window.open('/albums/'+document.forms['alid'].elements['id'].value,'_self')">
+     Album Id:<input value="AL100000" name="id" type="char"><input type="submit" value="Go"/>
+  </form>
+  </p>
+  <p>Search by Album Title:
+    <form name="asearch" action="javascript:window.open('/albums/search/'+document.forms['asearch'].elements['expr'].value,'_self')">
+      <input name="expr" id="expr" value="House" required/>
+      <input type="submit" value="Search"/>
+    </form>
+    </p>
+
+<h3>Artists</h3>
+<p>
+   <a href="/artists">List all avaiable Artists!</a>
+</p>
+<p>Get artist info:
+  <form name="aid" action="javascript:window.open('/artists/'+document.forms['aid'].elements['id'].value,'_self')">
+     Artist Id:<input value="PT500001" name="id" type="char"><input type="submit" value="Go"/>
+  </form>
+  </p>
+  <p>Search by Name:
+    <form name="artsearch" action="javascript:window.open('/artists/search/'+document.forms['artsearch'].elements['expr'].value,'_self')">
+      <input name="expr" id="expr" value="José" required/>
+      <input type="submit" value="Search"/>
+    </form>
+    </p>
+
+<h3>Tracks</h3>
+<p>
+   <a href="/tracks">List all avaiable Tracks!</a>
+   <p>Get Track info:
+    <form name="tid" action="javascript:window.open('/tracks/'+document.forms['tid'].elements['id'].value,'_self')">
+       Track Id:<input value="TR160000" name="id" type="char"><input type="submit" value="Go"/>
+    </form>
+    </p>
+    <p>Search by Track Title:
+      <form name="tsearch" action="javascript:window.open('/tracks/search/'+document.forms['tsearch'].elements['expr'].value,'_self')">
+        <input name="expr" id="expr" value="All" required/>
+        <input type="submit" value="Search"/>
+      </form>
+      </p>
+</p>
+
+<h3>Playlists</h3>
+<p>
+   <a href="/playlists">List all created Playlists!</a>
+</p>
+<h3>Users</h3>
+<p>
+   <a href="/users">List all registered Users!</a>
+</p>
+
+{% endblock %}

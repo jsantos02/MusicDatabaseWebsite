@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Albums{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table> 
+  <tr>
+    <th><b>Title</b></th>
+    <th><b>Artist</b></th>
+    <th><b>Runtime (hh:mm:ss)</b></th>
+    <th><b>Release Date </b></th>
+    <th><b>Number of Tracks </b></th>
+   </tr>
+   
+  {% for album in albums %}
+    <tr>
+      <td><a href="/albums/{{ album.Album_ID }}">{{album.Album_Title }}</a></td>
+      <td><a href="/artists/{{ album.Art_ID }}">{{album.Art_Name }}</a></td>
+      <td>{{ album.Duration }}</td>
+      <td>{{ album.ReleaseDate }}</td>      
+      <td>{{ album.NumberOfTracks }}</td>      
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ albums.Album_Title }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Album info</h2>
+  <p>
+    <b>Album ID: </b>{{ albums.Album_ID }}
+  </p>
+  <p>
+    <b>Title: </b>{{ albums.Album_Title }}
+  </p>
+  <p>
+    <b>Artist: </b><a href="/artists/{{ artist.Art_ID}}">{{ artist.Art_Name }}</a>
+  </p>
+  <p>
+    <b>Release Date: </b>{{ albums.ReleaseDate }}
+  </p>
+  <p>
+      <b>Number of Tracks: </b>{{ albums.NumberOfTracks }}
+  </p>
+  <p>
+    <b>Duration: </b>{{ albums.Duration }} (hh:mm:ss)
+  </p>
+  <p>
+    <h3>Tracks: </h3><ul>
+    {% for track in tracks %}      
+      <li><a href="/tracks/{{ track.Track_ID }}">{{ track.Title }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>  
+  <p>
+    <h3>Genres: </h3><ul>
+    {% for g in genres %}      
+      <li>{{ g.Genre }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>
+  {% if users %}
+  <p>
+    <h3>Users that liked the album: </h3><ul>
+    {% for u in users %}      
+      <li><a href="/users/{{ u.Login }}">{{ u.Login }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>  
+  {% endif %}
+{% endblock %}

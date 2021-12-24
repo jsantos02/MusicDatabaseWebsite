@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ track.Track_Title }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Track info</h2>
+  <p>
+    <b>Track by: </b><a href="/artists/{{artists.Art_ID}}">{{ artists.Art_Name }}</a> 
+  </p>
+  <p>
+      <b>In the album: </b> <a href="/albums/{{albums.Album_ID}}">{{ albums.Album_Title }}</a> 
+    </p>
+    <p>
+      <b>Runtime: </b>{{track.Track_RT}}
+    </p>
+    <p>
+        <b>Total Plays: </b>{{track.Track_Plays}}
+      </p>
+    <p>
+    <h3>Genres: </h3><ul>
+    {% for g in genrestrack %}      
+      <li>{{ g.GenreTr }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>
+  {% if playlists %}
+  <h3>Playlists where the song is found on: </h3><ul>
+      {% for playlist in playlists %}      
+      <li><a href="/playlists/{{ playlist.Play_ID }}">{{ playlist.Play_Title }}</a></li>
+      {% endfor %}
+    </ul>
+</p>  
+{% endif %}
+{% endblock %}

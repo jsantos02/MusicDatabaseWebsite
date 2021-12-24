@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Playlist{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>User info</h2>
+  <p>
+    <b>Title: </b>{{ playlist.Play_Title }}
+  </p>
+  <p>
+    <b>Description: </b>{{ playlist.Play_Desc }}
+  </p>
+  <p>
+    <b>Number of Tracks: </b>{{ duration.Counter }} 
+  </p>
+  <p>
+    <b>Duration: </b>{{ duration.Duration }} (hh:mm:ss)
+  </p>
+  <p>
+    <b>Created by: </b><a href="/users/{{ playlist.Play_User}}">{{ playlist.Play_User }}</a>
+  </p>
+  <p>
+    <h3>Tracks included: </h3><ul>
+    {% for track in tracks %}      
+      <li><a href="/tracks/{{ track.Track_ID }}">{{ track.Track_Title }}</a></li>
+      {% endfor %}
+    </ul>
+  </p>  
+  {% if following %}
+  <p>
+    <h3>Users following this playlist: </h3><ul>
+    {% for follow in following %}      
+      <li><a href="/users/{{ follow.Login }}">{{ follow.Login }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>  
+  {% endif %}
+{% endblock %}
