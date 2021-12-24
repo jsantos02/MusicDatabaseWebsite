@@ -365,5 +365,3 @@ def get_playlist(id):
         ''',id
     ).fetchall()
     return render_template('playlists.html',following=following,tracks=tracks,playlist=playlist,duration=duration)
-# TODO
-# Página artists incompleta(FALTA INFORMAÇÃO DELES).
